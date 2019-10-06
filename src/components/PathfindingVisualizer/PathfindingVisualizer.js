@@ -11,7 +11,8 @@ const NodeGrid = styled.div`
 `;
 
 const RowWrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-auto-flow: column;
 `;
 
 const PathfindingVisualizer = () => {
@@ -27,10 +28,10 @@ const PathfindingVisualizer = () => {
     <div>
       <h1>Pathfinding Visualizer</h1>
       <NodeGrid>
-        {nodes.map(row => (
-          <RowWrapper>
-            {row.map(row => (
-              <Node />
+        {nodes.map((row, index) => (
+          <RowWrapper key={index}>
+            {row.map((col, index) => (
+              <Node key={index} />
             ))}
           </RowWrapper>
         ))}
