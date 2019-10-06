@@ -12,7 +12,7 @@ const createNode = (row, col) => {
     distance: Infinity,
     isVisited: false,
     isWall: false,
-    previousNode: false,
+    previousNode: null,
   };
 };
 
@@ -26,4 +26,15 @@ export const createInitialGrid = () => {
     nodes.push(currentRow);
   }
   return nodes;
+};
+
+export const getNewGridWithWallToggled = (grid, row, col) => {
+  const newGrid = grid.slice();
+  const node = newGrid[row][col];
+  const newNode = {
+    ...node,
+    isWall: !node.isWall,
+  };
+  newGrid[row][col] = newNode;
+  return newGrid;
 };

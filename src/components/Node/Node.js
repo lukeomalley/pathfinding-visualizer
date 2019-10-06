@@ -7,11 +7,20 @@ const NodeWrapper = styled.div`
   border: 1px solid blue;
 `;
 
-const Node = ({ node }) => {
+const Node = ({ node, handleMouseDown, handleMouseEnter, handleMouseUp }) => {
   let className = '';
   if (node.isStart) className += 'start';
   if (node.isEnd) className += 'end';
-  return <NodeWrapper className={className}></NodeWrapper>;
+  if (node.isWall) className += 'wall';
+  return (
+    <NodeWrapper
+      id={`node-${node.row}-${node.col}`}
+      className={className}
+      onMouseDown={() => handleMouseDown(node.row, node.col)}
+      onMouseEnter={() => handleMouseEnter(node.row, node.col)}
+      onMouseUp={handleMouseUp}
+    ></NodeWrapper>
+  );
 };
 
 export default Node;
