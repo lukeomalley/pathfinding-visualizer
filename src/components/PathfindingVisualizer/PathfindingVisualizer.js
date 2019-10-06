@@ -53,7 +53,6 @@ const PathfindingVisualizer = () => {
   };
 
   const visualizeDijkstra = () => {
-    debugger;
     const startNode = grid[START_NODE_ROW][START_NODE_COL];
     const endNode = grid[END_NODE_ROW][END_NODE_COL];
     const visitedNodesInOrder = dijkstra(grid, startNode, endNode);
