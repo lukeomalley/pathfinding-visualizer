@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import Node from '../Node';
-import { createGrid } from '../../lib/createGrid';
+import { createInitialGrid } from '../../lib/createGrid';
 
 const NodeGrid = styled.div`
   margin: 0 auto;
@@ -23,10 +23,10 @@ const RowWrapper = styled.div`
 `;
 
 const PathfindingVisualizer = () => {
-  const [rows, setRows] = useState(createGrid());
+  const [rows, setRows] = useState(createInitialGrid());
 
   useEffect(() => {
-    setRows(createGrid(20, 50));
+    setRows(createInitialGrid());
   }, []);
 
   return (
