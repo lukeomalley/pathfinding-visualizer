@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import Node from '../Node';
@@ -18,22 +18,17 @@ const NodeGrid = styled.div`
 `;
 
 const RowWrapper = styled.div`
-  display: grid;
-  grid-auto-flow: column;
+  display: flex;
 `;
 
 const PathfindingVisualizer = () => {
-  const [rows, setRows] = useState(createInitialGrid());
-
-  useEffect(() => {
-    setRows(createInitialGrid());
-  }, []);
+  const [grid, setGrid] = useState(createInitialGrid());
 
   return (
     <div>
       <h1>Pathfinding Visualizer</h1>
       <NodeGrid>
-        {rows.map((row, index) => (
+        {grid.map((row, index) => (
           <RowWrapper key={index}>
             {row.map((node, index) => (
               <Node key={index} node={node} />
