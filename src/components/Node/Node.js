@@ -7,8 +7,11 @@ const NodeWrapper = styled.div`
   border: 1px solid blue;
 `;
 
-const Node = () => {
-  return <NodeWrapper></NodeWrapper>;
+const Node = ({ node }) => {
+  let className = '';
+  if (node.isStart) className += 'start';
+  if (node.isEnd) className += 'end';
+  return <NodeWrapper className={className}></NodeWrapper>;
 };
 
 export default Node;

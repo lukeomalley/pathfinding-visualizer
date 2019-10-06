@@ -5,9 +5,16 @@ import Node from '../Node';
 import { createGrid } from '../../lib/createGrid';
 
 const NodeGrid = styled.div`
-  width: 90%;
   margin: 0 auto;
-  display: grid;
+  width: 70vw;
+
+  .start {
+    background: green;
+  }
+
+  .end {
+    background: red;
+  }
 `;
 
 const RowWrapper = styled.div`
@@ -16,22 +23,20 @@ const RowWrapper = styled.div`
 `;
 
 const PathfindingVisualizer = () => {
-  const [nodes, setNodes] = useState(createGrid());
+  const [rows, setRows] = useState(createGrid());
 
   useEffect(() => {
-    setNodes(createGrid(20, 50));
+    setRows(createGrid(20, 50));
   }, []);
-
-  console.log(nodes);
 
   return (
     <div>
       <h1>Pathfinding Visualizer</h1>
       <NodeGrid>
-        {nodes.map((row, index) => (
+        {rows.map((row, index) => (
           <RowWrapper key={index}>
-            {row.map((col, index) => (
-              <Node key={index} />
+            {row.map((node, index) => (
+              <Node key={index} node={node} />
             ))}
           </RowWrapper>
         ))}
