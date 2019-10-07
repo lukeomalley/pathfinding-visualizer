@@ -1,11 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-
-const NodeWrapper = styled.div`
-  width: 25px;
-  height: 25px;
-  border: 1px solid blue;
-`;
+import './Node.css';
 
 const Node = ({ node, handleMouseDown, handleMouseEnter, handleMouseUp }) => {
   let className = '';
@@ -13,13 +7,13 @@ const Node = ({ node, handleMouseDown, handleMouseEnter, handleMouseUp }) => {
   if (node.isEnd) className += 'end';
   if (node.isWall) className += 'wall';
   return (
-    <NodeWrapper
+    <div
       id={`node-${node.row}-${node.col}`}
-      className={className}
+      className={`node ${className}`}
       onMouseDown={() => handleMouseDown(node.row, node.col)}
       onMouseEnter={() => handleMouseEnter(node.row, node.col)}
       onMouseUp={handleMouseUp}
-    ></NodeWrapper>
+    ></div>
   );
 };
 

@@ -34,20 +34,23 @@ const PathfindingVisualizer = () => {
     for (let i = 0; i < nodesInShortestPathOrder.length; i++) {
       setTimeout(() => {
         const node = nodesInShortestPathOrder[i];
-        document.getElementById(`node-${node.row}-${node.col}`).className = 'nose-shortest-path';
+        document.getElementById(`node-${node.row}-${node.col}`).className =
+          'node node-shortest-path';
       }, 50 * i);
     }
   };
 
   const animateDijkstra = (visitedNodesInOrder, nodesInShortestPathOrder) => {
-    for (let i = 0; i < visitedNodesInOrder.length; i++) {
+    for (let i = 0; i <= visitedNodesInOrder.length; i++) {
       if (i === visitedNodesInOrder.length) {
-        setTimeout(() => animateShortestPath(nodesInShortestPathOrder), 10 * 1);
+        setTimeout(() => {
+          animateShortestPath(nodesInShortestPathOrder);
+        }, 10 * i);
         return;
       }
       setTimeout(() => {
         const node = visitedNodesInOrder[i];
-        document.getElementById(`node-${node.row}-${node.col}`).className = 'node-visited';
+        document.getElementById(`node-${node.row}-${node.col}`).className = 'node node-visited';
       }, 10 * i);
     }
   };
@@ -63,7 +66,7 @@ const PathfindingVisualizer = () => {
   return (
     <div>
       <h1>Pathfinding Visualizer</h1>
-      <button onClick={visualizeDijkstra}></button>
+      <button onClick={visualizeDijkstra}>Animate Dijkstras Algorithm</button>
       <NodeGrid>
         {grid.map((row, index) => (
           <RowWrapper key={index}>
@@ -85,80 +88,7 @@ const PathfindingVisualizer = () => {
 
 const NodeGrid = styled.div`
   margin: 0 auto;
-  width: 70vw;
-
-  .start {
-    background: green;
-  }
-
-  .end {
-    background: red;
-  }
-
-  .wall {
-    background: blue;
-  }
-
-  .node-visited {
-    animation-name: visitedAnimation;
-    animation-duration: 1.5s;
-    animation-timing-function: ease-out;
-    animation-delay: 0;
-    animation-direction: alternate;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    animation-play-state: running;
-  }
-
-  @keyframes visitedAnimation {
-    0% {
-      transform: scale(0.3);
-      background-color: rgba(0, 0, 66, 0.75);
-      border-radius: 100%;
-    }
-
-    50% {
-      background-color: rgba(17, 104, 217, 0.75);
-    }
-
-    75% {
-      transform: scale(1.2);
-      background-color: rgba(0, 217, 159, 0.75);
-    }
-
-    100% {
-      transform: scale(1);
-      background-color: rgba(0, 190, 218, 0.75);
-    }
-  }
-
-  .node-shortest-path {
-    animation-name: shortestPath;
-    animation-duration: 1.5s;
-    animation-timing-function: ease-out;
-    animation-delay: 0;
-    animation-direction: alternate;
-    animation-iteration-count: 1;
-    animation-fill-mode: forwards;
-    animation-play-state: running;
-  }
-
-  @keyframes shortestPath {
-    0% {
-      transform: scale(0.6);
-      background-color: rgb(255, 254, 106);
-    }
-
-    50% {
-      transform: scale(1.2);
-      background-color: rgb(255, 254, 106);
-    }
-
-    100% {
-      transform: scale(1);
-      background-color: rgb(255, 254, 106);
-    }
-  }
+  width: 90vw;
 `;
 
 const RowWrapper = styled.div`
