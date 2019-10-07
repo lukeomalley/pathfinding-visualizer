@@ -36,7 +36,7 @@ const PathfindingVisualizer = () => {
         const node = nodesInShortestPathOrder[i];
         document.getElementById(`node-${node.row}-${node.col}`).className =
           'node node-shortest-path';
-      }, 50 * i);
+      }, 25 * i);
     }
   };
 
